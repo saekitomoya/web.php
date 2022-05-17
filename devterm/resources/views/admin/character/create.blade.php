@@ -65,7 +65,7 @@
                           <option value="3">雷</option>
                           <option value="4">闇</option>
                           <option value="5">光</option>
-                          <option value="6">無</option>
+                          <option value="6">闇</option>
                         </select>
                     </div>
                     <div class="form-group row">
