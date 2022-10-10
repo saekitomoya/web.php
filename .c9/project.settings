@@ -4,7 +4,13 @@
     },
     "extensions": {
         "@aws.cfnSchemaVersion": "v5.2.11",
+        "@aws.profile": "profile:default",
         "@aws.samSchemaVersion": "v5.2.11",
+        "@editor.acceptSuggestionOnEnter": "on",
+        "@editor.snippetSuggestions": "top",
+        "@editor.suggest.preview": true,
+        "@editor.suggest.showMethods": true,
+        "@git.ignoreLimitWarning": true,
         "@json.schemas": [],
         "@yaml.customTags": [
             "!And",

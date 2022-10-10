@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+  let apple = {
+    name: 'りんご',
+    color: '赤',
+    size: 10,
+    weight: 7
+};
+
+ let orange = {
+    name: 'みかん',
+    color: '橙',
+    size: 7,
+    weight: 3
+};
+
+ let grape = {
+    name: 'ぶどう',
+    color: '紫',
+    size: 12,
+    weight:5 
+};
+
+let brother = [apple,orange ,grape ];
+brother.forEach(e => {
+    console.log(apple.weight + orange.weight + grape.weight + 'kg');
+});
+
+  </script>
+</body>
+</html>

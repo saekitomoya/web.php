@@ -11,7 +11,6 @@ class CharacterController extends Controller
      public function index(Request $request)
     {
         $posts = Character::all()->sortByDesc('updated_at');
-
         if (count($posts) > 0) {
             $headline = $posts->shift();
         } else {

@@ -18,7 +18,7 @@ class CharacterController extends Controller
       $this->validate($request, Character::$rules);
       $character = new Character;
       $form = $request->all();
-    if (isset($form['image'])) {
+      if (isset($form['image'])) {
         $path = $request->file('image')->store('public/image');
         $character->image_path = basename($path);
       } else {
@@ -38,21 +38,27 @@ class CharacterController extends Controller
  }
 
     
- public function index(Request $request)
-  {
-      $cond_name = $request->cond_name;
-      if ($cond_name != '') {
-          // 検索されたら検索結果を取得する
-          $posts = Character::where('name', $cond_name)->get();
-      } else {
-          // それ以外はすべてのニュースを取得する
-          $posts = Character::all();
+     public function index(Request $request)
+      {
+          $cond_name = $request->cond_name;
+          if ($cond_name != '') {
+              // 検索されたら検索結果を取得する
+              $posts = Character::where('name', $cond_name)->get();
+          } else {
+              // それ以外はすべてのニュースを取得する
+              $posts = Character::all();
+          }
+          return view('admin.character.index', ['posts' => $posts, 'cond_name' => $cond_name]);
       }
-      return view('admin.character.index', ['posts' => $posts, 'cond_name' => $cond_name]);
-  }
+      
+     public function show($id)
+     {
+        $character = Character::find($id);
+        return view('admin.character.show',['character'=> $character]);
+     }
 
 
-    public function edit(Request $request)
+     public function edit(Request $request)
       {
           // News Modelからデータを取得する
           $character = Character::find($request->id);
@@ -68,16 +74,27 @@ class CharacterController extends Controller
           $this->validate($request, Character::$rules);
           // News Modelからデータを取得する
           $character = Character::find($request->id);
-          dump($request->id);
+          
           // 送信されてきたフォームデータを格納する
           $character_form = $request->all();
-          unset($character_form['_token']);
-          dump($character);
-          exit;
-          // 該当するデータを上書きして保存する
-          $character->fill($character_form)->save();
+           if ($request->remove == 'true') {
+          $character_form['image_path'] = null;
+            } elseif ($request->file('image')) {
+                $path = $request->file('image')->store('public/image');
+                $character_form['image_path'] = basename($path);
+            } else {
+          $character_form['image_path'] = $character->image_path;
+         }
 
-          return redirect('admin/character');
+          unset($character_form['image']);
+          unset($character_form['remove']);
+          unset($character_form['_token']);
+          unset($character_form['_token']);
+            
+              // 該当するデータを上書きして保存する
+              $character->fill($character_form)->save();
+    
+              return redirect('admin/character');
   
       }
       public function delete(Request $request)

@@ -25,10 +25,12 @@
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         {{-- この章の後半で作成するCSSを読み込みます --}}
         <link href="{{ secure_asset('css/front.css') }}" rel="stylesheet">
+        @if(Request::is('admin/character/*/show'))
+            <link href="{{ secure_asset('css/user_show.css') }}" rel="stylesheet">
+        @endif
     </head>
     <body>
-        <h1>サンプル</h1>
-        <div id="app">
+        <div id="app" >
             {{-- 画面上部に表示するナビゲーションバーです。 --}}
             <nav class="navbar navbar-expand-md navbar-dark navbar-laravel header-navigation ">
                 <div class="container">
@@ -43,9 +45,6 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
                          <li><a href="#" class="btn-stitch">キャラクター</a></li>
-                          <li><a href="#" class="btn-stitch">武器</a></li>
-                          <li><a href="#" class="btn-stitch">アクセサリー</a></li>
-                          <li><a href="#" class="btn-stitch">動画</a></li>
                         </ul>
 
                         <!-- Right Side Of Navbar -->
